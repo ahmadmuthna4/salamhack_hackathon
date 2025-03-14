@@ -9,6 +9,7 @@ import { VideoModule } from './video/video.module';
 import { AudioFileModule } from './audio-file/audio-file.module';
 import { KeywordModule } from './keyword/keyword.module';
 import { PodcastModule } from './podcast/podcast.module';
+import { ExerciseModule } from './exercise/exercise.module';
 
 
 @Module({
@@ -22,6 +23,7 @@ import { PodcastModule } from './podcast/podcast.module';
     AudioFileModule,
     KeywordModule,
     PodcastModule,
+    ExerciseModule
 
 
   ],
