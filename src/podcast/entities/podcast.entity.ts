@@ -3,6 +3,7 @@ import { CoreEntity } from "../../common/entities/core.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId } from "typeorm";
 import { Video } from "../../video/entities/video.entity";
 import { Transcript } from "../../transcript/entities/transcript.entity";
+import { AudioFile } from "../../audio-file/entities/audio-file.entity";
 
 
 @Entity()
@@ -29,6 +30,10 @@ export class Podcast extends CoreEntity {
   ai_generated_text: string;
 
 
+
+
+  @OneToMany(() => AudioFile, audioFile => audioFile.podcast)
+  audioFiles: AudioFile[];
 
 
 }
