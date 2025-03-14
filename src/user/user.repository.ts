@@ -14,11 +14,12 @@ export class UserRepository implements IRepository<User, CreateUserDto, GetUserD
     constructor(@InjectRepository(User) private user: Repository<User>, private bcrypt: Bcrypt) { }
 
     async create(createUserDto: CreateUserDto): Promise<User> {
-        const { email, name, password, role } = createUserDto;
+        const { email, name, password, role, language_preference } = createUserDto;
         const user = new User();
         user.email = email;
         user.name = name;
         user.role = role;
+        user.language_preference = language_preference;
         user.password = this.bcrypt.hashUserPassword(password)
         try {
             return await this.user.save(user);
@@ -57,10 +58,11 @@ export class UserRepository implements IRepository<User, CreateUserDto, GetUserD
 
     async update(id: number, updateDto: UpdateUserDto): Promise<User> {
         const user = await this.getById(id, {})
-        const { name, email, role } = updateDto;
+        const { name, email, role, language_preference } = updateDto;
         user.name = name ?? user.name;
         user.email = email ?? user.email;
         user.role = role ?? user.role;
+        user.language_preference = language_preference ?? user.language_preference;
         return await this.user.save(user);
     }
 

@@ -7,6 +7,7 @@ export enum UserSelectedFieldEnum {
     name = "name",
     email = "email",
     role = "role",
+    language_preference = "language_preference",
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     deletedAt = "deletedAt",

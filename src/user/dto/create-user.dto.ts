@@ -8,29 +8,37 @@ export enum UserRoleEnum {
 
 
 export class CreateUserDto {
-    
-    @ApiProperty({ 
+
+    @ApiProperty({
         description: 'The name of the user.',
-         example: 'Ahmed' 
-        })
+        example: 'Ahmed'
+    })
     @IsString()
     @IsNotEmpty()
     name: string;
 
-  
-    @ApiProperty({ 
-        description: 'The email of the user.', 
-        example: 'Ahmed@example.com' 
+    @ApiProperty({
+        description: 'The language_preference of the user.',
+        example: 'en'
+    })
+    @IsString()
+    @IsNotEmpty()
+    language_preference: string;
+
+
+    @ApiProperty({
+        description: 'The email of the user.',
+        example: 'Ahmed@example.com'
     })
     @IsNotEmpty()
     @IsEmail()
     email: string;
 
-    
-    @ApiProperty({ 
+
+    @ApiProperty({
         description: 'The password of the user.',
-         example: 'password123'
-         })
+        example: 'password123'
+    })
     @IsNotEmpty()
     @IsString()
     password: string;
@@ -38,11 +46,11 @@ export class CreateUserDto {
     /**
      * The role of the user.
      */
-    @ApiPropertyOptional({ 
+    @ApiPropertyOptional({
         description: 'The role of the user.',
-         enum: UserRoleEnum ,
-         example: 'admin',
-        })
+        enum: UserRoleEnum,
+        example: 'admin',
+    })
     @IsOptional()
     @IsEnum(UserRoleEnum)
     role: UserRoleEnum;

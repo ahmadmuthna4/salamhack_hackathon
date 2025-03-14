@@ -1,5 +1,5 @@
 import { CoreEntity } from "../../common/entities/core.entity";
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index } from "typeorm";
 import { UserRoleEnum } from "../dto/create-user.dto";
 import { Exclude } from "class-transformer";
 
@@ -17,6 +17,10 @@ export class User extends CoreEntity {
   @Column({ type: 'varchar' })
   @Exclude()
   password: string;
+
+  @Column({ type: 'varchar', nullable: true })
+  language_preference: string;
+
 
   @Column({ type: 'enum', enum: UserRoleEnum, default: UserRoleEnum.USER })
   role: UserRoleEnum;

@@ -17,7 +17,7 @@ export default class TypeOrmConfig {
       host: configServise.get('POSTGRES_HOST'),
       entities: [join(__dirname, '../../**/**/**/*.entity{.ts,.js}')],
       namingStrategy: new SnakeNamingStrategy(),
-      synchronize: false,
+      synchronize: true,
     };
   }
 }
