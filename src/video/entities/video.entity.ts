@@ -3,6 +3,7 @@ import { CoreEntity } from "../../common/entities/core.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId } from "typeorm";
 import { User } from "../../user/entities/user.entity";
 import { Transcript } from "../../transcript/entities/transcript.entity";
+import { Podcast } from "src/podcast/entities/podcast.entity";
 
 @Entity()
 export class Video extends CoreEntity {
@@ -28,4 +29,7 @@ export class Video extends CoreEntity {
 
   @OneToMany(() => Transcript, transcript => transcript.video)
   transcripts: Transcript[];
+
+  @OneToMany(() => Podcast, podcast => podcast.video)
+  podcasts: Podcast[];
 }
