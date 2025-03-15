@@ -1,4 +1,3 @@
-
 // audio-file.service.ts
 import { Injectable } from '@nestjs/common';
 import { CreateAudioFileDto } from './dto/create-audio-file.dto';
@@ -11,8 +10,16 @@ import { DeleteResult } from 'typeorm';
 import { GetAll } from '../common/interfaces/get-all.interface';
 
 @Injectable()
-export class AudioFileService implements IRepository<AudioFile, CreateAudioFileDto, GetAudioFileDto, UpdateAudioFileDto> {
-  constructor(private readonly audioFileRepo: AudioFileRepository) { }
+export class AudioFileService
+  implements
+    IRepository<
+      AudioFile,
+      CreateAudioFileDto,
+      GetAudioFileDto,
+      UpdateAudioFileDto
+    >
+{
+  constructor(private readonly audioFileRepo: AudioFileRepository) {}
 
   create(createDto: CreateAudioFileDto): Promise<AudioFile> {
     return this.audioFileRepo.create(createDto);
@@ -26,15 +33,18 @@ export class AudioFileService implements IRepository<AudioFile, CreateAudioFileD
     return this.audioFileRepo.getById(id, query);
   }
 
-  update(id: number, updateDto: UpdateAudioFileDto): Promise<AudioFile> {
-    return this.audioFileRepo.update(id, updateDto);
+  async update(id: number, updateData: Partial<AudioFile>): Promise<AudioFile> {
+    return this.audioFileRepo.update(id, updateData);
   }
 
   delete(id: number): Promise<DeleteResult> {
     return this.audioFileRepo.delete(id);
   }
 
-  getByPodcastId(podcastId: number, query: GetAudioFileDto): Promise<GetAll<AudioFile>> {
+  getByPodcastId(
+    podcastId: number,
+    query: GetAudioFileDto,
+  ): Promise<GetAll<AudioFile>> {
     return this.audioFileRepo.getByPodcastId(podcastId, query);
   }
 }
