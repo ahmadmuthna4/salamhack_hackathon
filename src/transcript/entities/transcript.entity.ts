@@ -17,6 +17,14 @@ export class Transcript extends CoreEntity {
   @Column({ type: 'float', nullable: true })
   timestamp_end: number;
 
+
+  @Column({ type: 'float', nullable: true })
+  duration: number;
+
+
+  @Column({ type: 'int', nullable: true })
+  sequence: number;
+
   @ManyToOne(() => Video, video => video.transcripts, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'video_id' })
   video: Video;

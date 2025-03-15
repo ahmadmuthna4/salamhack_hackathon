@@ -10,6 +10,7 @@ import { AudioFileModule } from './audio-file/audio-file.module';
 import { KeywordModule } from './keyword/keyword.module';
 import { PodcastModule } from './podcast/podcast.module';
 import { ExerciseModule } from './exercise/exercise.module';
+import { UserProgressModule } from './user-progress/user-progress.module';
 
 
 @Module({
@@ -23,7 +24,8 @@ import { ExerciseModule } from './exercise/exercise.module';
     AudioFileModule,
     KeywordModule,
     PodcastModule,
-    ExerciseModule
+    ExerciseModule,
+    UserProgressModule
 
 
   ],

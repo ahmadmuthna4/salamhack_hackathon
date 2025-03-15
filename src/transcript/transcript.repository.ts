@@ -15,12 +15,14 @@ export class TranscriptRepository implements IRepository<Transcript, CreateTrans
     constructor(@InjectRepository(Transcript) private transcriptRepo: Repository<Transcript>) { }
 
     async create(createTranscriptDto: CreateTranscriptDto): Promise<Transcript> {
-        const { text, timestamp_start, timestamp_end, video_id } = createTranscriptDto;
+        const { text, timestamp_start, timestamp_end, video_id, sequence, duration } = createTranscriptDto;
         const transcript = new Transcript();
         transcript.text = text;
         transcript.timestamp_start = timestamp_start;
         transcript.timestamp_end = timestamp_end;
         transcript.video_id = video_id;
+        transcript.sequence = sequence;
+        transcript.duration = duration
 
         try {
             return await this.transcriptRepo.save(transcript);
@@ -53,10 +55,12 @@ export class TranscriptRepository implements IRepository<Transcript, CreateTrans
 
     async update(id: number, updateDto: UpdateTranscriptDto): Promise<Transcript> {
         const transcript = await this.getById(id, {});
-        const { text, timestamp_start, timestamp_end } = updateDto;
+        const { text, timestamp_start, timestamp_end, duration, sequence } = updateDto;
         transcript.text = text ?? transcript.text;
         transcript.timestamp_start = timestamp_start ?? transcript.timestamp_start;
         transcript.timestamp_end = timestamp_end ?? transcript.timestamp_end;
+        transcript.duration = duration ?? transcript.duration;
+        transcript.sequence = sequence ?? transcript.sequence;
         return await this.transcriptRepo.save(transcript);
     }
 

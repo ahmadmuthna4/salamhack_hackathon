@@ -1,8 +1,10 @@
 import { CoreEntity } from "../../common/entities/core.entity";
-import { Column, Entity, Index, OneToMany } from "typeorm";
+import { Column, Entity, Index, OneToMany, OneToOne } from "typeorm";
 import { Video } from "../../video/entities/video.entity";
 import { UserRoleEnum } from "../dto/create-user.dto";
 import { Exclude } from "class-transformer";
+
+import { UserProgress } from "../../user-progress/entities/user-progress.entity";
 
 @Entity()
 export class User extends CoreEntity {
@@ -29,6 +31,10 @@ export class User extends CoreEntity {
   @OneToMany(() => Video, video => video.user)
   videos: Video[];
 
+
+
+  @OneToOne(() => UserProgress, userProgress => userProgress.user)
+  progress: UserProgress;
 
 
 }

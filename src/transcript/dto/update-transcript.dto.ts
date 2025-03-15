@@ -27,4 +27,21 @@ export class UpdateTranscriptDto {
     @IsOptional()
     @IsNumber()
     timestamp_end?: number;
+
+    @ApiPropertyOptional({
+        description: 'The sequence  transcript',
+        example: 1
+    })
+    @IsOptional()
+    @IsNumber()
+    sequence?: number;
+
+
+    @ApiPropertyOptional({
+        description: 'The duration  of the transcript segment',
+        example: 5.3
+    })
+    @IsOptional()
+    @IsNumber()
+    duration?: number;
 }

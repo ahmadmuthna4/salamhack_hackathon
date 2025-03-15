@@ -20,6 +20,23 @@ export class CreateTranscriptDto {
     timestamp_start?: number;
 
     @ApiProperty({
+        description: 'The sequence  transcript',
+        example: 1
+    })
+    @IsOptional()
+    @IsNumber()
+    sequence?: number;
+
+
+    @ApiProperty({
+        description: 'The duration  of the transcript segment',
+        example: 5.3
+    })
+    @IsOptional()
+    @IsNumber()
+    duration?: number;
+
+    @ApiProperty({
         description: 'The end timestamp of the transcript segment',
         example: 15.7
     })
