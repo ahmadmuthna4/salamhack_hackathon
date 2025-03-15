@@ -1,35 +1,59 @@
-
 // video.controller.ts
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseGuards, Request } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { VideoService } from './video.service';
-import { CreateVideoDto, CreateVideoWithRelatedDto } from './dto/create-video.dto';
+import {
+  CreateVideoDto,
+  CreateVideoWithRelatedDto,
+} from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { GetVideoDto } from './dto/get-video.dto';
-import { ApiBody, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guard/jwt.guard';
 
 @ApiTags('videos')
 @Controller('videos')
 export class VideoController {
-  constructor(private readonly videoService: VideoService) { }
-
-
-
+  constructor(private readonly videoService: VideoService) {}
 
   @Post('related')
   @ApiOperation({ summary: 'Create a new video with related data' })
-  @ApiBody({ description: 'Create a new video with related data', type: CreateVideoWithRelatedDto })
-  @ApiResponse({ status: 201, description: 'Video with related data created successfully.' })
+  @ApiBody({
+    description: 'Create a new video with related data',
+    type: CreateVideoWithRelatedDto,
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'Video with related data created successfully.',
+  })
   @ApiResponse({ status: 400, description: 'Invalid input data.' })
   @UseGuards(JwtAuthGuard)
   async createVideoWithRelated(
     @Body() createVideoDto: CreateVideoWithRelatedDto,
     @Request() req,
   ) {
-    return this.videoService.createVideoWithRelated(createVideoDto, req.user.id);
+    return this.videoService.createVideoWithRelated(
+      createVideoDto,
+      req.user.id,
+    );
   }
-
-
 
   @Post()
   @ApiOperation({ summary: 'Create a new video' })
@@ -41,9 +65,20 @@ export class VideoController {
 
   @Get()
   @ApiOperation({ summary: 'Retrieve all videos' })
-  @ApiQuery({ name: 'limit', required: false, description: 'Limit the number of results' })
-  @ApiQuery({ name: 'offset', required: false, description: 'Offset the results' })
-  @ApiResponse({ status: 200, description: 'List of videos retrieved successfully.' })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    description: 'Limit the number of results',
+  })
+  @ApiQuery({
+    name: 'offset',
+    required: false,
+    description: 'Offset the results',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'List of videos retrieved successfully.',
+  })
   findAll(@Query() query: GetVideoDto) {
     return this.videoService.getAll(query);
   }

@@ -1,4 +1,3 @@
-
 // keyword.service.ts
 import { Injectable } from '@nestjs/common';
 import { CreateKeywordDto } from './dto/create-keyword.dto';
@@ -11,8 +10,11 @@ import { DeleteResult } from 'typeorm';
 import { GetAll } from '../common/interfaces/get-all.interface';
 
 @Injectable()
-export class KeywordService implements IRepository<Keyword, CreateKeywordDto, GetKeywordDto, UpdateKeywordDto> {
-  constructor(private readonly keywordRepo: KeywordRepository) { }
+export class KeywordService
+  implements
+    IRepository<Keyword, CreateKeywordDto, GetKeywordDto, UpdateKeywordDto>
+{
+  constructor(private readonly keywordRepo: KeywordRepository) {}
 
   create(createDto: CreateKeywordDto): Promise<Keyword> {
     return this.keywordRepo.create(createDto);
@@ -34,7 +36,10 @@ export class KeywordService implements IRepository<Keyword, CreateKeywordDto, Ge
     return this.keywordRepo.delete(id);
   }
 
-  getByTranscriptId(transcriptId: string, query: GetKeywordDto): Promise<GetAll<Keyword>> {
-    return this.keywordRepo.getByTranscriptId(transcriptId, query);
+  getByVideoId(
+    videoId: number,
+    query: GetKeywordDto,
+  ): Promise<GetAll<Keyword>> {
+    return this.keywordRepo.getByVideoId(videoId, query);
   }
 }

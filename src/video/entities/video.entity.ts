@@ -1,9 +1,17 @@
 // video.entity.ts
-import { CoreEntity } from "../../common/entities/core.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, RelationId } from "typeorm";
-import { User } from "../../user/entities/user.entity";
-import { Transcript } from "../../transcript/entities/transcript.entity";
-import { Podcast } from "src/podcast/entities/podcast.entity";
+import { CoreEntity } from '../../common/entities/core.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  RelationId,
+} from 'typeorm';
+import { User } from '../../user/entities/user.entity';
+import { Transcript } from '../../transcript/entities/transcript.entity';
+import { Podcast } from 'src/podcast/entities/podcast.entity';
+import { Keyword } from 'src/keyword/entities/keyword.entity';
 
 @Entity()
 export class Video extends CoreEntity {
@@ -19,7 +27,7 @@ export class Video extends CoreEntity {
   @Column({ type: 'boolean', default: false })
   processed: boolean;
 
-  @ManyToOne(() => User, user => user.videos, { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.videos, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
@@ -27,9 +35,12 @@ export class Video extends CoreEntity {
   @RelationId((video: Video) => video.user)
   user_id: number;
 
-  @OneToMany(() => Transcript, transcript => transcript.video)
+  @OneToMany(() => Transcript, (transcript) => transcript.video)
   transcripts: Transcript[];
 
-  @OneToMany(() => Podcast, podcast => podcast.video)
+  @OneToMany(() => Keyword, (keyword) => keyword.video)
+  keywords: Keyword[];
+
+  @OneToMany(() => Podcast, (podcast) => podcast.video)
   podcasts: Podcast[];
 }

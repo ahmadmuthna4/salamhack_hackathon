@@ -1,7 +1,9 @@
-
 // video.service.ts
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateVideoDto, CreateVideoWithRelatedDto } from './dto/create-video.dto';
+import {
+  CreateVideoDto,
+  CreateVideoWithRelatedDto,
+} from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { IRepository } from '../common/interfaces/repository.interfance.tsrepository.interfance';
 import { Video } from './entities/video.entity';
@@ -14,7 +16,9 @@ import { Keyword } from 'src/keyword/entities/keyword.entity';
 import { Transcript } from 'src/transcript/entities/transcript.entity';
 
 @Injectable()
-export class VideoService implements IRepository<Video, CreateVideoDto, GetVideoDto, UpdateVideoDto> {
+export class VideoService
+  implements IRepository<Video, CreateVideoDto, GetVideoDto, UpdateVideoDto>
+{
   constructor(
     private readonly videoRepo: VideoRepository,
 
@@ -23,9 +27,7 @@ export class VideoService implements IRepository<Video, CreateVideoDto, GetVideo
     @InjectRepository(Keyword)
     private readonly keywordsRepository: Repository<Keyword>,
     private dataSource: DataSource,
-  ) { }
-
-
+  ) {}
 
   async createVideoWithRelated(dto: CreateVideoWithRelatedDto, userId: number) {
     // Start a transaction to ensure data consistency
@@ -49,23 +51,19 @@ export class VideoService implements IRepository<Video, CreateVideoDto, GetVideo
           ...transcriptDto,
           video_id: savedVideo.id,
         });
-        const savedTranscript = await queryRunner.manager.save(Transcript, transcript);
+        const savedTranscript = await queryRunner.manager.save(
+          Transcript,
+          transcript,
+        );
         savedTranscripts.push(savedTranscript);
       }
 
       // Create and save all keywords
       const savedKeywords = [];
       for (const keywordDto of dto.keywords) {
-        const { transcript_index, ...keywordData } = keywordDto;
-
-        // Check if transcript_index is valid
-        if (transcript_index < 0 || transcript_index >= savedTranscripts.length) {
-          throw new BadRequestException(`Invalid transcript_index: ${transcript_index}`);
-        }
-
         const keyword = this.keywordsRepository.create({
-          ...keywordData,
-          transcript_id: savedTranscripts[transcript_index].id,
+          ...keywordDto,
+          video_id: savedVideo.id,
         });
 
         const savedKeyword = await queryRunner.manager.save(Keyword, keyword);
