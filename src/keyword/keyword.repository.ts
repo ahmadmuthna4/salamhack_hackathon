@@ -103,7 +103,7 @@ export class KeywordRepository
     }
 
     const [array, count] = await this.keywordRepo.findAndCount({
-      // select: select ?? [],
+      select: select ?? [],
       take: limit ?? 100,
       skip: offset ?? 0,
       relations: relations ?? [],

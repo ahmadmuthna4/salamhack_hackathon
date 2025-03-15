@@ -61,10 +61,10 @@ export class KeywordController {
     return this.keywordService.getAll(query);
   }
 
-  @Get('transcript/:transcriptId')
+  @Get('video/:videoId')
   @ApiOperation({ summary: 'Retrieve all keywords for a specific transcript' })
   @ApiParam({
-    name: 'transcriptId',
+    name: 'videoId',
     description: 'The ID of the transcript to get keywords for',
   })
   @ApiQuery({
@@ -77,8 +77,8 @@ export class KeywordController {
     status: 200,
     description: 'List of keywords retrieved successfully.',
   })
-  findByTranscriptId(
-    @Param('transcriptId') videoId: number,
+  findByvideoId(
+    @Param('videoId') videoId: number,
     @Query() query: GetKeywordDto,
   ) {
     return this.keywordService.getByVideoId(videoId, query);
