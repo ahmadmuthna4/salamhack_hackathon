@@ -1,4 +1,3 @@
-
 // podcast.service.ts
 import { Injectable } from '@nestjs/common';
 import { CreatePodcastDto } from './dto/create-podcast.dto';
@@ -11,8 +10,11 @@ import { DeleteResult } from 'typeorm';
 import { GetAll } from '../common/interfaces/get-all.interface';
 
 @Injectable()
-export class PodcastService implements IRepository<Podcast, CreatePodcastDto, GetPodcastDto, UpdatePodcastDto> {
-  constructor(private readonly podcastRepo: PodcastRepository) { }
+export class PodcastService
+  implements
+    IRepository<Podcast, CreatePodcastDto, GetPodcastDto, UpdatePodcastDto>
+{
+  constructor(private readonly podcastRepo: PodcastRepository) {}
 
   create(createDto: CreatePodcastDto): Promise<Podcast> {
     return this.podcastRepo.create(createDto);
@@ -34,11 +36,10 @@ export class PodcastService implements IRepository<Podcast, CreatePodcastDto, Ge
     return this.podcastRepo.delete(id);
   }
 
-  getByVideoId(videoId: number, query: GetPodcastDto): Promise<GetAll<Podcast>> {
+  getByVideoId(
+    videoId: number,
+    query: GetPodcastDto,
+  ): Promise<GetAll<Podcast>> {
     return this.podcastRepo.getByVideoId(videoId, query);
-  }
-
-  getByTranscriptId(transcriptId: number, query: GetPodcastDto): Promise<GetAll<Podcast>> {
-    return this.podcastRepo.getByTranscriptId(transcriptId, query);
   }
 }

@@ -24,15 +24,15 @@ export class Podcast extends CoreEntity {
   @RelationId((podcast: Podcast) => podcast.video)
   video_id: number;
 
-  @ManyToOne(() => Transcript, (transcript) => transcript.podcasts, {
-    onDelete: 'CASCADE',
-  })
-  @JoinColumn({ name: 'transcript_id' })
-  transcript: Transcript;
+  // @ManyToOne(() => Transcript, (transcript) => transcript.podcasts, {
+  //   onDelete: 'CASCADE',
+  // })
+  // @JoinColumn({ name: 'transcript_id' })
+  // transcript: Transcript;
 
-  @Column()
-  @RelationId((podcast: Podcast) => podcast.transcript)
-  transcript_id: number;
+  // @Column()
+  // @RelationId((podcast: Podcast) => podcast.transcript)
+  // transcript_id: number;
 
   @Column({ type: 'text', name: 'ai_generated_text' })
   ai_generated_text: string;

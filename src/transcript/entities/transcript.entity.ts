@@ -40,6 +40,6 @@ export class Transcript extends CoreEntity {
   // @OneToMany(() => Keyword, (keyword) => keyword.transcript)
   // keywords: Keyword[];
 
-  @OneToMany(() => Podcast, (podcast) => podcast.transcript)
-  podcasts: Podcast[];
+  // @OneToMany(() => Podcast, (podcast) => podcast.transcript)
+  // podcasts: Podcast[];
 }
