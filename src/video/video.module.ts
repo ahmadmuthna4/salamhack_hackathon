@@ -8,11 +8,15 @@ import { VideoRepository } from './video.repository';
 import { UserModule } from '../user/user.module';
 import { Keyword } from 'src/keyword/entities/keyword.entity';
 import { Transcript } from 'src/transcript/entities/transcript.entity';
+import { Podcast } from 'src/podcast/entities/podcast.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Video, Transcript, Keyword]), UserModule],
+  imports: [
+    TypeOrmModule.forFeature([Video, Transcript, Keyword, Podcast]),
+    UserModule,
+  ],
   controllers: [VideoController],
   providers: [VideoService, VideoRepository],
-  exports: [VideoService]
+  exports: [VideoService],
 })
-export class VideoModule { }
+export class VideoModule {}
