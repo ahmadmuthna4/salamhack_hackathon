@@ -41,7 +41,7 @@ export class PodcastRepository
     const [array, count] = await this.podcastRepo.findAndCount({
       take: limit ?? 100,
       skip: offset ?? 0,
-      relations: relations ?? [],
+      relations: { video: true },
       order: { createdAt: 'DESC' },
     });
     return { count, array };
