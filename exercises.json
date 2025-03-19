@@ -1,0 +1,100 @@
+{
+  "question": "What is the name of the podcast?",
+  "answer_choices": ["The Choices We Make", "Decisions and Challenges", "Navigating Life", "Difficult Decisions"],
+  "correct_answer": "The Choices We Make"
+},
+{
+  "question": "Who is the host of the podcast?",
+  "answer_choices": ["Emma Watson", "Emma Stone", "Emma Roberts", "Emma Collins"],
+  "correct_answer": "Emma Collins"
+},
+{
+  "question": "What is the main topic of the podcast?",
+  "answer_choices": ["Making tough decisions for loved ones", "Stories of courage and bravery", "Overcoming personal challenges", "Understanding chronic illnesses"],
+  "correct_answer": "Making tough decisions for loved ones"
+},
+{
+  "question": "What is the dilemma discussed in the podcast?",
+  "answer_choices": ["Whether to use a breathing tube or focus on comfort for a sick loved one", "Whether to fight an illness or accept it", "Whether to stay in the hospital or go home", "Whether to share the illness with others or keep it private"],
+  "correct_answer": "Whether to use a breathing tube or focus on comfort for a sick loved one"
+},
+{
+  "question": "Who had to make a decision about her mother's health?",
+  "answer_choices": ["Ms. Fardos", "Professor Rami", "Emma Collins", "Amal"],
+  "correct_answer": "Amal"
+},
+{
+  "question": "What does the 'book' metaphor represent in the podcast?",
+  "answer_choices": ["The stages of life", "The story of an illness", "The process of making a decision", "The importance of planning"],
+  "correct_answer": "The stages of life"
+},
+{
+  "question": "What does the 'ball' metaphor represent in the podcast?",
+  "answer_choices": ["The unpredictability of life", "The importance of sharing and connection", "The challenges in decision making", "The ups and downs of life"],
+  "correct_answer": "The importance of sharing and connection"
+},
+{
+  "question": "What is the importance of writing a will, as mentioned in the podcast?",
+  "answer_choices": ["To distribute assets", "To tell a life story", "To make sure a person's wishes are heard when they can't speak", "To keep a record of personal details"],
+  "correct_answer": "To make sure a person's wishes are heard when they can't speak"
+},
+{
+  "question": "According to the podcast, what is not right or wrong?",
+  "answer_choices": ["Choosing comfort care", "Using a breathing tube", "Any decision made for a loved one's health", "Writing a will"],
+  "correct_answer": "Any decision made for a loved one's health"
+},
+{
+  "question": "What is the final message of the podcast?",
+  "answer_choices": ["To fight against illnesses", "To cherish every moment with loved ones", "To be brave when making decisions", "To read more books"],
+  "correct_answer": "To cherish every moment with loved ones"
+},
+{
+  "question": "What's the name of the woman confused about the decision for her mother?",
+  "answer_choices": ["Emma", "Amal", "Ms. Fardos", "Professor Rami"],
+  "correct_answer": "Amal"
+},
+{
+  "question": "What's the name of the professor mentioned in the podcast?",
+  "answer_choices": ["Professor Rami", "Professor Amal", "Professor Fardos", "Professor Emma"],
+  "correct_answer": "Professor Rami"
+},
+{
+  "question": "What does Emma Collins ask listeners to think about as they wrap up the episode?",
+  "answer_choices": ["Their own health", "Their loved ones' wishes", "Their daily decisions", "Their favorite book"],
+  "correct_answer": "Their loved ones' wishes"
+},
+{
+  "question": "What is the name of the woman who believes every illness has a cure?",
+  "answer_choices": ["Ms. Fardos", "Professor Rami", "Emma Collins", "Amal"],
+  "correct_answer": "Ms. Fardos"
+},
+{
+  "question": "What is the main purpose of the 'book' and 'ball' metaphors?",
+  "answer_choices": ["To explain medical procedures", "To stress the importance of family", "To help understand life and relationships", "To promote reading and sports"],
+  "correct_answer": "To help understand life and relationships"
+},
+{
+  "question": "What does Emma mention as an important action to take early on?",
+  "answer_choices": ["Visiting the doctor", "Writing a will", "Exercising regularly", "Reading a book"],
+  "correct_answer": "Writing a will"
+},
+{
+  "question": "What is the overall tone of the podcast?",
+  "answer_choices": ["Humorous", "Melancholic", "Inspirational", "Informative"],
+  "correct_answer": "Informative"
+},
+{
+  "question": "Who does Emma Collins address in her final words?",
+  "answer_choices": ["Doctors", "Podcast guests", "Listeners", "Family members"],
+  "correct_answer": "Listeners"
+},
+{
+  "question": "What is the podcast trying to make easier for listeners?",
+  "answer_choices": ["Understanding medical terms", "Making difficult decisions", "Dealing with loss", "Communicating with doctors"],
+  "correct_answer": "Making difficult decisions"
+},
+{
+  "question": "What does Emma Collins hope the listeners found the discussion to be?",
+  "answer_choices": ["Entertaining", "Helpful", "Exciting", "Relaxing"],
+  "correct_answer": "Helpful"
+}
