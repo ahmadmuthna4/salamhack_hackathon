@@ -1,12 +1,10 @@
 // exercise.entity.ts
-import { CoreEntity } from "../../common/entities/core.entity";
-import { Column, Entity, JoinColumn, ManyToOne, RelationId } from "typeorm";
-import { Podcast } from "../../podcast/entities/podcast.entity";
+import { CoreEntity } from '../../common/entities/core.entity';
+import { Column, Entity, JoinColumn, ManyToOne, RelationId } from 'typeorm';
+import { Podcast } from '../../podcast/entities/podcast.entity';
 
 @Entity({ name: 'exercises' })
 export class Exercise extends CoreEntity {
-
-
   @Column({ type: 'text' })
   question: string;
 
@@ -16,7 +14,15 @@ export class Exercise extends CoreEntity {
   @Column({ type: 'text' })
   correct_answer: string;
 
-  @ManyToOne(() => Podcast, podcast => podcast.exercises, { onDelete: 'CASCADE' })
+  @Column({ type: 'text', default: '' })
+  user_answer: string;
+
+  @Column({ type: 'text', default: '' })
+  status: string;
+
+  @ManyToOne(() => Podcast, (podcast) => podcast.exercises, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'podcast_id' })
   podcast: Podcast;
 

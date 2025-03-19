@@ -6,20 +6,19 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Exercise } from './entities/exercise.entity';
-import { DeleteResult, Repository } from 'typeorm';
+import { DataSource, DeleteResult, Repository } from 'typeorm';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
 import { IRepository } from '../common/interfaces/repository.interfance.tsrepository.interfance';
 import { UpdateExerciseDto } from './dto/update-exercise.dto';
 import { GetExerciseDto } from './dto/get-exercise.dto';
 import { GetAll } from '../common/interfaces/get-all.interface';
+import { Podcast } from 'src/podcast/entities/podcast.entity';
 
 @Injectable()
-export class ExerciseRepository
-  implements
-    IRepository<Exercise, CreateExerciseDto, GetExerciseDto, UpdateExerciseDto>
-{
+export class ExerciseRepository {
   constructor(
     @InjectRepository(Exercise) private exerciseRepo: Repository<Exercise>,
+    private dataSource: DataSource,
   ) {}
 
   async create(createExerciseDto: CreateExerciseDto): Promise<Exercise> {
@@ -61,13 +60,52 @@ export class ExerciseRepository
     return exercise;
   }
 
-  async update(id: number, updateDto: UpdateExerciseDto): Promise<Exercise> {
+  // async update(id: number, updateDto: UpdateExerciseDto) {
+  //   const exercise = await this.getById(id, {});
+  //   const { question, answer_choices, correct_answer, user_answer } = updateDto;
+
+  //   exercise.question = question ?? exercise.question;
+  //   exercise.answer_choices = answer_choices ?? exercise.answer_choices;
+  //   exercise.correct_answer = correct_answer ?? exercise.correct_answer;
+  //   exercise.user_answer = user_answer ?? exercise.user_answer;
+
+  //   if (exercise.user_answer === exercise.correct_answer) {
+  //     exercise.status = 'Correct';
+  //   } else {
+  //     exercise.status = 'Not_Correct';
+  //   }
+  //   await this.exerciseRepo.save(exercise);
+
+  //   return { isCorrect: exercise.user_answer === exercise.correct_answer };
+  // }
+
+  async update(id: number, updateDto: UpdateExerciseDto) {
     const exercise = await this.getById(id, {});
-    const { question, answer_choices, correct_answer } = updateDto;
+    const { question, answer_choices, correct_answer, user_answer } = updateDto;
+
     exercise.question = question ?? exercise.question;
     exercise.answer_choices = answer_choices ?? exercise.answer_choices;
     exercise.correct_answer = correct_answer ?? exercise.correct_answer;
-    return await this.exerciseRepo.save(exercise);
+    exercise.user_answer = user_answer ?? exercise.user_answer;
+
+    // Check if the answer is correct
+    const isCorrect = exercise.user_answer === exercise.correct_answer;
+    exercise.status = isCorrect ? 'Correct' : 'Not_Correct';
+
+    // Save the updated exercise
+    await this.exerciseRepo.save(exercise);
+
+    // Update the podcast score using dataSource
+    if (exercise.podcast_id) {
+      await this.dataSource
+        .createQueryBuilder()
+        .update(Podcast)
+        .set({ score: () => `score ${isCorrect ? '+ 1' : '- 1'}` })
+        .where('id = :podcastId', { podcastId: exercise.podcast_id })
+        .execute();
+    }
+
+    return { isCorrect };
   }
 
   async delete(id: number): Promise<DeleteResult> {

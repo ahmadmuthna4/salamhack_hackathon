@@ -1,4 +1,3 @@
-
 // exercise.service.ts
 import { Injectable } from '@nestjs/common';
 import { CreateExerciseDto } from './dto/create-exercise.dto';
@@ -11,8 +10,8 @@ import { DeleteResult } from 'typeorm';
 import { GetAll } from '../common/interfaces/get-all.interface';
 
 @Injectable()
-export class ExerciseService implements IRepository<Exercise, CreateExerciseDto, GetExerciseDto, UpdateExerciseDto> {
-  constructor(private readonly exerciseRepo: ExerciseRepository) { }
+export class ExerciseService {
+  constructor(private readonly exerciseRepo: ExerciseRepository) {}
 
   create(createDto: CreateExerciseDto): Promise<Exercise> {
     return this.exerciseRepo.create(createDto);
@@ -26,7 +25,7 @@ export class ExerciseService implements IRepository<Exercise, CreateExerciseDto,
     return this.exerciseRepo.getById(id, query);
   }
 
-  update(id: number, updateDto: UpdateExerciseDto): Promise<Exercise> {
+  update(id: number, updateDto: UpdateExerciseDto) {
     return this.exerciseRepo.update(id, updateDto);
   }
 
@@ -34,7 +33,10 @@ export class ExerciseService implements IRepository<Exercise, CreateExerciseDto,
     return this.exerciseRepo.delete(id);
   }
 
-  getByPodcastId(podcastId: number, query: GetExerciseDto): Promise<GetAll<Exercise>> {
+  getByPodcastId(
+    podcastId: number,
+    query: GetExerciseDto,
+  ): Promise<GetAll<Exercise>> {
     return this.exerciseRepo.getByPodcastId(podcastId, query);
   }
 }
